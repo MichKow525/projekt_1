@@ -13,6 +13,7 @@ public class movement : MonoBehaviour
     public float speed = 10;
     public float runspeed = 15;
     public bool isGrounded = false;
+    public bool doubleJump = false;
 
 
     // Start is called before the first frame update
@@ -22,7 +23,47 @@ public class movement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {   DoubleJump();
+        Skok();
+       
+    }
+
+    void FixedUpdate()
     {
+        Ruch();
+    }
+        
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        isGrounded = true;
+        doubleJump = false;
+    }
+
+    private void Skok()
+ {
+     if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+ {
+            
+            rb.AddForce(Vector2.up * upForce);
+            isGrounded = false;
+            doubleJump = true;
+          
+ }
+ }
+    private void DoubleJump()
+    {
+         if (Input.GetKeyDown(KeyCode.Space) && doubleJump)
+         {
+             rb.AddForce(Vector2.up * upForce);
+             isGrounded = false;
+             doubleJump = false;
+         }
+ }
+
+  private void Ruch()
+  {
+  
         if (Input.GetKey(KeyCode.LeftShift))
         {
             rb.velocity = new Vector2(Input.GetAxis("Horizontal") * runspeed * Time.deltaTime, rb.velocity.y);
@@ -31,17 +72,5 @@ public class movement : MonoBehaviour
         {
             rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed * Time.deltaTime, rb.velocity.y);
         }
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-
-            rb.AddForce(Vector2.up * upForce);
-            isGrounded = false;
-        } 
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        isGrounded = true;
-    }
+  }
 }
