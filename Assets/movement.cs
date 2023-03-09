@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class movement : MonoBehaviour
 {
@@ -73,4 +74,12 @@ public class movement : MonoBehaviour
             rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed * Time.deltaTime, rb.velocity.y);
         }
   }
+  
+ private void OnTriggerEnter2D (Collider2D collision)
+ { 
+     if (collision.tag == "dziura")
+     {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);;
+        }
+ }
 }
