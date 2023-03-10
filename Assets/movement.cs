@@ -15,11 +15,13 @@ public class movement : MonoBehaviour
     public float runspeed = 15;
     public bool isGrounded = false;
     public bool doubleJump = false;
+    public Transform _originalParent;
 
 
     // Start is called before the first frame update
     void Start()
-    {  
+    {
+        _originalParent = transform.parent;
     }
 
     // Update is called once per frame
@@ -82,4 +84,12 @@ public class movement : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);;
         }
  }
+    public void SetParent(Transform newParent)
+    {
+        _originalParent = transform.parent;
+        transform.parent = newParent;
+    }
+    public void ResetParent()
+    { transform.parent = _originalParent; }
+
 }
