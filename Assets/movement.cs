@@ -22,10 +22,12 @@ public class movement : MonoBehaviour
     public Transform _originalParent;
     public Vector3 lastMove;
     public int lives = 2;
+    public ParticleSystem krew;
 
     // Start is called before the first frame update
     void Start()
     {
+        krew.Stop();
         _originalParent = transform.parent;
     }
 
@@ -89,6 +91,7 @@ public class movement : MonoBehaviour
     {
         if (collision.tag == "lawa")
         {
+            krew.Play();
             kontroler.SetBool("isDamaged", true);
             isDamaged = true;
             lives--;
@@ -158,12 +161,14 @@ public class movement : MonoBehaviour
         {
             kontroler.SetBool("isDead", true);
             Invoke("death", 2);
+            return;
         }
         kontroler.SetFloat("yVelocity", rb.velocity.y);
 
     }
     public void nodamage()
     {
+        krew.Stop();
         isDamaged = false;
         kontroler.SetBool("isDamaged", false);
     }
