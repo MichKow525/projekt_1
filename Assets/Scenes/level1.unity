@@ -560,7 +560,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -628,7 +628,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4134,11 +4134,11 @@ ParticleSystem:
     enabled: 1
     serializedVersion: 4
     type: 0
-    collisionMode: 0
+    collisionMode: 1
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
-    multiplyColliderForceByCollisionAngle: 1
+    multiplyColliderForceByCollisionAngle: 0
     m_Planes:
     - {fileID: 1465758146}
     m_Dampen:
@@ -4306,7 +4306,7 @@ ParticleSystem:
     collidesWith:
       serializedVersion: 2
       m_Bits: 4294967295
-    maxCollisionShapes: 256
+    maxCollisionShapes: 2
     quality: 0
     voxelSize: 0.5
     collisionMessages: 0
@@ -7042,7 +7042,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1465758142}
-  m_LocalRotation: {x: -0.07014156, y: -0.000076078584, z: 0.0010819713, w: 0.9975365}
+  m_LocalRotation: {x: -0.028467117, y: -0.000030876676, z: 0.0010842031, w: 0.99959415}
   m_LocalPosition: {x: -1.6399999, y: 47.731903, z: -0.014662544}
   m_LocalScale: {x: 8.945154, y: 2.271492, z: 2.271492}
   m_ConstrainProportionsScale: 0
@@ -7528,7 +7528,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1803819468}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.81, y: 45.8, z: -1}
+  m_LocalPosition: {x: 5.81, y: 46.23, z: -1}
   m_LocalScale: {x: 4.943259, y: 5.0488305, z: 1.0099}
   m_ConstrainProportionsScale: 0
   m_Children: []
