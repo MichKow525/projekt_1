@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 484382663}
   - component: {fileID: 484382661}
   - component: {fileID: 484382662}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: krew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4133,7 +4133,7 @@ ParticleSystem:
   CollisionModule:
     enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 1
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -4302,10 +4302,10 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 1
+    radiusScale: 0.1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 55
     maxCollisionShapes: 2
     quality: 0
     voxelSize: 0.5
@@ -5349,7 +5349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484382660}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.015, y: -0.011, z: -0.6682231}
+  m_LocalPosition: {x: 0.015, y: 0.004, z: -0.6682231}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6377,8 +6377,8 @@ Transform:
   m_GameObject: {fileID: 1357614421}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.74, y: 60.81069, z: 10.007917}
-  m_LocalScale: {x: 3.1, y: 0.375, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 852631733}
   m_RootOrder: -1
@@ -6429,7 +6429,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -6467,18 +6467,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0071382523, y: 0.0071372986}
   m_SpriteTilingProperty:
     border: {x: 0.25, y: 0.25, z: 0.25, w: 0.25}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 3, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.8702679, y: 0.47175598}
   m_EdgeRadius: 0
 --- !u!114 &1357614426
 MonoBehaviour:
@@ -6523,7 +6523,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!1 &1361592787
 GameObject:
   m_ObjectHideFlags: 0
@@ -6538,7 +6538,8 @@ GameObject:
   - component: {fileID: 1361592791}
   - component: {fileID: 1361592792}
   - component: {fileID: 1361592793}
-  m_Layer: 0
+  - component: {fileID: 1361592794}
+  m_Layer: 9
   m_Name: kwadraciak
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6570,7 +6571,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &1361592789
 SpriteRenderer:
@@ -6632,7 +6633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361592787}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.7235, y: 58.95069, z: 1}
+  m_LocalPosition: {x: 1.47, y: 58.61, z: 1}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -6672,7 +6673,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.003126949, y: 0.0011895448}
+  m_Offset: {x: 0.003126949, y: -0.008560747}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6683,7 +6684,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.30692655, y: 0.26592186}
+  m_Size: {x: 0.30692655, y: 0.28542244}
   m_EdgeRadius: 0
 --- !u!114 &1361592792
 MonoBehaviour:
@@ -6730,7 +6731,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+--- !u!1818360610 &1361592794
+ScaleConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361592787}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Weight: 1
+  m_ScaleAtRest: {x: 5, y: 5, z: 5}
+  m_ScaleOffset: {x: 1, y: 1, z: 1}
+  m_AffectScalingX: 1
+  m_AffectScalingY: 1
+  m_AffectScalingZ: 1
+  m_Active: 0
+  m_IsLocked: 1
+  m_Sources: []
 --- !u!1 &1419525880
 GameObject:
   m_ObjectHideFlags: 0
@@ -7432,7 +7450,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1803819468}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 242fbb3a1fbb41d4bbc76f0cfdf15c1d, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -91,10 +91,12 @@ public class movement : MonoBehaviour
     {
         if (collision.tag == "lawa")
         {
+           
             krew.Play();
             kontroler.SetBool("isDamaged", true);
             isDamaged = true;
             lives--;
+            rb.velocity = Vector2.zero;
             rb.AddForce(Vector2.up * burnForce);
             Invoke("nodamage", 1);
 
