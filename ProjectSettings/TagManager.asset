@@ -6,11 +6,12 @@ TagManager:
   tags:
   - dziura
   - lawa
+  - wlacznik
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - "cie\u0144"
   - Water
   - UI
   - 
@@ -40,6 +41,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: tlo
+    uniqueID: 480081203
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: bg1
+    uniqueID: 179556767
+    locked: 0
+  - name: bg
+    uniqueID: 687826061
+    locked: 0
+  - name: lvl
+    uniqueID: 3073037557
+    locked: 0
+  - name: playerf
+    uniqueID: 3165787945
+    locked: 0
+  - name: fg
+    uniqueID: 3188925795
     locked: 0
