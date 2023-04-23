@@ -16,7 +16,13 @@ public class menucontroler : MonoBehaviour
         {
             return;
         }
+    PlayerPrefs.DeleteKey("p_x");
+    PlayerPrefs.DeleteKey("p_y");
+     PlayerPrefs.DeleteKey("zycia");
+     PlayerPrefs.DeleteKey("Saved");
+     PlayerPrefs.DeleteKey("TimeToLoad");
     playerName = input.text;
+    
         SceneManager.LoadScene(1);
 
      }

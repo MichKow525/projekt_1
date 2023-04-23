@@ -23,20 +23,57 @@ public class movement : MonoBehaviour
     public Vector3 lastMove;
     public int lives = 2;
     public ParticleSystem krew;
+    public GameObject player;
+    movement playerPosData;
 
-
-    // Start is called before the first frame update
+   private void Awake()
+   {
+playerPosData= FindObjectOfType<movement>();
+playerPosData.PlayerPosLoad();
+   }
     void Start()
+    {   
+        if(PlayerPrefs.GetInt("Saved") == 1 && PlayerPrefs.GetInt("TimeToLoad") == 1)
     {
+    
+        float pX= player.transform.position.x;
+        float pY= player.transform.position.y;
+
+        pX= PlayerPrefs.GetFloat("p_x");
+        pY= PlayerPrefs.GetFloat("p_y");
+        player.transform.position = new Vector2 (pX, pY);
+        lives = PlayerPrefs.GetInt("zycia",3);
+        PlayerPrefs.SetInt("TimeToLoad",0);
+    }    
+        
+        
         krew.Stop();
         _originalParent = transform.parent;
     }
 
-    // Update is called once per frame
+    public void  PlayerPosLoad()
+    {
+        PlayerPrefs.SetInt("TimeToLoad", 1);
+        PlayerPrefs.Save();
+    }
+    
+    
+    public void PlayerPosSave()
+    {
+ PlayerPrefs.SetInt("zycia",lives);
+        PlayerPrefs.SetFloat("p_x",player.transform.position.x);
+        PlayerPrefs.SetFloat("p_y",player.transform.position.y);
+        PlayerPrefs.SetInt("Saved",1);
+        PlayerPrefs.Save();
+    }
+    
+    
     void Update()
     {   DoubleJump();
         Skok();
         animacje();
+       
+       
     }
 
     void FixedUpdate()
