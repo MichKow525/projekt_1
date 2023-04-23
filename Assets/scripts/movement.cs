@@ -31,7 +31,8 @@ public class movement : MonoBehaviour
 playerPosData= FindObjectOfType<movement>();
 playerPosData.PlayerPosLoad();
    }
-    void Start()
+   // zapisywanie********************
+   void Start()
     {   
         if(PlayerPrefs.GetInt("Saved") == 1 && PlayerPrefs.GetInt("TimeToLoad") == 1)
     {
@@ -66,7 +67,7 @@ playerPosData.PlayerPosLoad();
         PlayerPrefs.SetInt("Saved",1);
         PlayerPrefs.Save();
     }
-    
+  // koniec zapisywania********************
     
     void Update()
     {   DoubleJump();

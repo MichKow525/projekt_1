@@ -9,7 +9,7 @@ public class exit : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject pauseButton;
     
-    
+    //pause menu i zapisywanie danych przy wyjœciu do menu g³ównego
     public void Pause()
     {   pauseButton.SetActive(false);
         pauseMenu.SetActive(true);

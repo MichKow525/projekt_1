@@ -16,6 +16,7 @@ public class menucontroler : MonoBehaviour
         {
             return;
         }
+        // reset zapisanych wartoœci
     PlayerPrefs.DeleteKey("p_x");
     PlayerPrefs.DeleteKey("p_y");
      PlayerPrefs.DeleteKey("zycia");
