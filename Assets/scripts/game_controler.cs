@@ -18,7 +18,8 @@ public class game_controler : MonoBehaviour
     }
     void Start()
     {
-
+        playerName = PlayerPrefs.GetString("name", playerName);
+       
         UpdatePlayerName();
     }
     public void UpdateLives()
@@ -27,7 +28,7 @@ public class game_controler : MonoBehaviour
     }
     public void UpdatePlayerName()
     {
-        textPlayerName.text = menucontroler.playerName;
+        textPlayerName.text = PlayerPrefs.GetString("name", playerName);
     }
 
 }

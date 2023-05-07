@@ -17,13 +17,9 @@ public class menucontroler : MonoBehaviour
             return;
         }
         // reset zapisanych wartoœci
-    PlayerPrefs.DeleteKey("p_x");
-    PlayerPrefs.DeleteKey("p_y");
-     PlayerPrefs.DeleteKey("zycia");
-     PlayerPrefs.DeleteKey("Saved");
-     PlayerPrefs.DeleteKey("TimeToLoad");
-    playerName = input.text;
-    
+        PlayerPrefs.DeleteAll();
+        playerName = input.text;
+        PlayerPrefs.SetString("name", playerName);
         SceneManager.LoadScene(1);
 
      }

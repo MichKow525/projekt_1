@@ -61,7 +61,7 @@ playerPosData.PlayerPosLoad();
     
     public void PlayerPosSave()
     {
- PlayerPrefs.SetInt("zycia",lives);
+        PlayerPrefs.SetInt("zycia",lives);
         PlayerPrefs.SetFloat("p_x",player.transform.position.x);
         PlayerPrefs.SetFloat("p_y",player.transform.position.y);
         PlayerPrefs.SetInt("Saved",1);
