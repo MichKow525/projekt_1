@@ -9,6 +9,7 @@ TagManager:
   - wlacznik
   - Weak_Point
   - "obra\u017Cenia"
+  - nothing
   layers:
   - Default
   - TransparentFX

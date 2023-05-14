@@ -9,7 +9,8 @@ using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
 public class movement : MonoBehaviour
-{
+{   
+    public int NIeœmiertelny;
     public Rigidbody2D rb;
     public int burnForce = 400;
     public int upForce = 200;
@@ -113,7 +114,7 @@ playerPosData.PlayerPosLoad();
          if (Input.GetKeyDown(KeyCode.Space) && doubleJump)
          {
              rb.AddForce(Vector2.up * upForce);
-             isGrounded = false;
+            
              doubleJump = false;
          }
  }
@@ -133,7 +134,8 @@ playerPosData.PlayerPosLoad();
     }
 private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        if (NIeœmiertelny == 0)
+        {
         if (collision.tag == "obra¿enia")
         {
            
@@ -141,6 +143,7 @@ private void OnTriggerEnter2D(Collider2D collision)
             kontroler.SetBool("isDamaged", true);
             isDamaged = true;
             lives--;
+            Invoke ("invunurable", 0);
             Invoke("nodamage", 1);
 
         }
@@ -151,12 +154,13 @@ private void OnTriggerEnter2D(Collider2D collision)
             kontroler.SetBool("isDamaged", true);
             isDamaged = true;
             lives--;
+            Invoke ("invunurable", 0);
             rb.velocity = Vector2.zero;
             rb.AddForce(Vector2.up * burnForce);
             Invoke("nodamage", 1);
 
         }
-
+        }
         if (collision.tag == "dziura")
      {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -229,6 +233,18 @@ private void OnTriggerEnter2D(Collider2D collision)
         isDamaged = false;
         kontroler.SetBool("isDamaged", false);
     }
+
+    public void invunurable()
+    {
+        NIeœmiertelny = 1;
+        Invoke("koniecinvunurable",1);
+    }
+
+    public void koniecinvunurable()
+    {
+       NIeœmiertelny = 0;
+    }
+
     public void death()
     {   
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
