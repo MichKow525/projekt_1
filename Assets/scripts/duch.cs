@@ -17,7 +17,7 @@ public class duch : MonoBehaviour
     void Start()
     {
 
-        targetWaypoint = waypoints[0];
+        targetWaypoint = waypoints[1];
     }
     private void Update()
     {
@@ -31,8 +31,9 @@ public class duch : MonoBehaviour
     private Transform GetNextWaypoint()
     {
         currentWaypointIndex++;
+         transform.localScale = new Vector3(1,1,1);
         if (currentWaypointIndex >= waypoints.Length)
-        {
+        {   transform.localScale = new Vector3(-1,1,1);
             currentWaypointIndex = 0;
         }
         return waypoints[currentWaypointIndex];

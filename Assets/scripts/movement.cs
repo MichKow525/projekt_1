@@ -77,13 +77,19 @@ playerPosData.PlayerPosLoad();
        
     }
 
+  
+   
+
+
     void FixedUpdate()
     {
         Ruch();
     }
    
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {   
+      
+
         isGrounded = true;
         doubleJump = false;
     }
@@ -128,7 +134,16 @@ playerPosData.PlayerPosLoad();
 private void OnTriggerEnter2D(Collider2D collision)
     {
 
+        if (collision.tag == "obra¿enia")
+        {
+           
+            krew.Play();
+            kontroler.SetBool("isDamaged", true);
+            isDamaged = true;
+            lives--;
+            Invoke("nodamage", 1);
 
+        }
         if (collision.tag == "lawa")
         {
            
@@ -202,7 +217,7 @@ private void OnTriggerEnter2D(Collider2D collision)
         if (lives == 0)
         {
             kontroler.SetBool("isDead", true);
-            Invoke("death", 3);
+            Invoke("death", 2);
             return;
         }
         kontroler.SetFloat("yVelocity", rb.velocity.y);

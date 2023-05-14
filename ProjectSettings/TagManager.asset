@@ -7,6 +7,8 @@ TagManager:
   - dziura
   - lawa
   - wlacznik
+  - Weak_Point
+  - "obra\u017Cenia"
   layers:
   - Default
   - TransparentFX
