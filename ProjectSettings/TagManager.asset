@@ -10,6 +10,7 @@ TagManager:
   - Weak_Point
   - "obra\u017Cenia"
   - nothing
+  - Ground
   layers:
   - Default
   - TransparentFX

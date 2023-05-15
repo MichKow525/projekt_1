@@ -68,14 +68,34 @@ playerPosData.PlayerPosLoad();
         PlayerPrefs.SetInt("Saved",1);
         PlayerPrefs.Save();
     }
-  // koniec zapisywania********************
-    
+    // koniec zapisywania********************
+
+    public float groundCheckDistance = 0.5f;
+
     void Update()
     {   DoubleJump();
         Skok();
         animacje();
-       
-       
+        
+        RaycastHit2D[] res = new RaycastHit2D[10];
+        ContactFilter2D filter = new ContactFilter2D() ; 
+        filter.NoFilter();
+        Physics2D.Raycast(transform.position, Vector2.down * groundCheckDistance, filter ,res);
+        bool anyGround = false;
+        foreach (RaycastHit2D hit in res)
+        {
+            
+            if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground") && Vector2.Distance(transform.position,hit.point) < groundCheckDistance) 
+            {
+                Debug.Log(hit.collider + " " + hit.point);
+                Debug.DrawLine(transform.position, hit.point, Color.blue);
+                anyGround = true;
+            }
+        }
+        if (!anyGround)
+        {
+            isGrounded = false;
+        }
     }
 
   
@@ -94,10 +114,7 @@ playerPosData.PlayerPosLoad();
         isGrounded = true;
         doubleJump = false;
     }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        isGrounded = false;
-    }
+  
     private void Skok()
  {
      if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
