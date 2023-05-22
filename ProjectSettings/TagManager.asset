@@ -11,6 +11,7 @@ TagManager:
   - "obra\u017Cenia"
   - nothing
   - Ground
+  - door
   layers:
   - Default
   - TransparentFX

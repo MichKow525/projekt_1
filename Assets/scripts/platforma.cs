@@ -13,7 +13,8 @@ public class platforma : MonoBehaviour
     
     private Transform targetWaypoint;
     private int currentWaypointIndex = 0;
-
+    public BoxCollider2D player;
+    public BoxCollider2D kill_check;
 
     void Start()
     {
@@ -40,20 +41,25 @@ public class platforma : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other)
+    {   if(other.collider==kill_check)
     {
-        var platforMovement = other.collider.GetComponent<movement>();
+        var platforMovement = player.GetComponent<movement>();
         if (platforMovement != null)
         {
             platforMovement.SetParent(transform);
         }
     }
+    }
 
     private void OnCollisionExit2D (Collision2D other)
-    {
-        var platforMovement = other.collider.GetComponent<movement>();
+    {   
+        if(other.collider==kill_check)
+        {
+        var platforMovement = player.GetComponent<movement>();
         if (platforMovement != null)
         {
             platforMovement.ResetParent();
+        }
         }
     }
 }

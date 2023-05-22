@@ -17,13 +17,22 @@ public class znikanie : MonoBehaviour
         
     }
 
+    private void wy³¹czenie()
+    {
+       gameObject.SetActive(false);
+    }
 
+    private void w³¹czenie()
+    {
+        gameObject.SetActive(true);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(gameObject, time);
+          Invoke("wy³¹czenie", time);
+          Invoke("w³¹czenie", 6);
         }
     }
 }

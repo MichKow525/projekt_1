@@ -8,6 +8,7 @@ public class exit : MonoBehaviour
     movement playerPosData;
     public GameObject pauseMenu;
     public GameObject pauseButton;
+
     
     //pause menu i zapisywanie danych przy wyjœciu do menu g³ównego
     public void Pause()
@@ -30,6 +31,7 @@ public class exit : MonoBehaviour
     public void quit()
     {   
         Time.timeScale = 1f;
+         PlayerPrefs.Save();
         playerPosData.PlayerPosSave();
         SceneManager.LoadScene(0);
     }

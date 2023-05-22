@@ -10,6 +10,7 @@ public class menucontroler : MonoBehaviour
     public TextMeshProUGUI textPlayerName;
     public TextMeshProUGUI textLives;
     public static string playerName;
+    public float ktory_lvl; 
     
     public void CreatePlayer(TMP_InputField input)
     {   if (input.text.Length == 0 || input.text.Length > 15)
@@ -25,9 +26,20 @@ public class menucontroler : MonoBehaviour
      }
 
     public void LoadGame()
-    {
+    {   
+    
+        
+        if (PlayerPrefs.GetFloat("scena1", 1) == 1)
+        {
         SceneManager.LoadScene(1);
-    }
+        }
+        if (PlayerPrefs.GetFloat("scena1", 1) == 2)
+        {
+        SceneManager.LoadScene(2);
+        }
+
+
+        }
     public void Exit()
     {
         Application.Quit();
