@@ -34,7 +34,7 @@ playerPosData.PlayerPosLoad();
    }
    // zapisywanie********************
    void Start()
-    {   
+    {  
         if(PlayerPrefs.GetInt("Saved") == 1 && PlayerPrefs.GetInt("TimeToLoad") == 1)
     {
     

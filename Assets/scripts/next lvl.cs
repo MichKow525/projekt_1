@@ -21,7 +21,10 @@ public class nextlvl : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-     {
+     {  float p_x = -150;
+        float p_y = 117;
+        PlayerPrefs.SetFloat("p_x", p_x);
+         PlayerPrefs.SetFloat("p_y", p_y);
         PlayerPrefs.SetFloat("scena1", 2);
          Time.timeScale = 1f;
         PlayerPrefs.Save();
