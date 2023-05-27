@@ -77,15 +77,25 @@ playerPosData.PlayerPosLoad();
         Skok();
         animacje();
         
+      
+    }
+
+  
+   
+
+
+    void FixedUpdate()
+    {
+        Ruch();
         RaycastHit2D[] res = new RaycastHit2D[10];
-        ContactFilter2D filter = new ContactFilter2D() ; 
+        ContactFilter2D filter = new ContactFilter2D();
         filter.NoFilter();
-        Physics2D.Raycast(transform.position, Vector2.down * groundCheckDistance, filter ,res);
+        Physics2D.Raycast(transform.position, Vector2.down * groundCheckDistance, filter, res);
         bool anyGround = false;
         foreach (RaycastHit2D hit in res)
         {
-            
-            if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground") && Vector2.Distance(transform.position,hit.point) < groundCheckDistance) 
+
+            if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground") && Vector2.Distance(transform.position, hit.point) < groundCheckDistance)
             {
                 Debug.Log(hit.collider + " " + hit.point);
                 Debug.DrawLine(transform.position, hit.point, Color.blue);
@@ -96,15 +106,6 @@ playerPosData.PlayerPosLoad();
         {
             isGrounded = false;
         }
-    }
-
-  
-   
-
-
-    void FixedUpdate()
-    {
-        Ruch();
     }
    
     private void OnCollisionEnter2D(Collision2D other)
