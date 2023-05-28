@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class killcheck : MonoBehaviour
-{
+{   
     private int hitpoints;
     public float bounce;
     public Rigidbody2D rb2D;
@@ -26,12 +26,14 @@ public class killcheck : MonoBehaviour
             PlayerPrefs.SetFloat("killpoint", killreward);
              Destroy(collision.gameObject);
              rb2D.velocity = new Vector2(rb2D.velocity.x,bounce);
+              PlayerPrefs.Save();
            
         }
+      
         if (collision.gameObject.tag == "boss")
         {
             hitpoints--;
-            rb2D.velocity = new Vector2(rb2D.velocity.x+12, bounce*2);
+            rb2D.velocity = new Vector2(rb2D.velocity.x+50, bounce*2);
             if (hitpoints <= 0)
             {
 

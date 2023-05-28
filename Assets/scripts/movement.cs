@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
 public class movement : MonoBehaviour
-{   public int deathcount;
+{   public int deathcount = 0;
     public killcheck script;
     public float score = 0;
     public int coins = 0;
@@ -25,7 +25,7 @@ public class movement : MonoBehaviour
     public Animator kontroler;
     public Transform _originalParent;
     public Vector3 lastMove;
-    public int lives = 2;
+    public int lives;
     public ParticleSystem krew;
     public GameObject player;
     movement playerPosData;
@@ -75,12 +75,14 @@ playerPosData.PlayerPosLoad();
             {
                 lives++;
                 coins = 0;
+                PlayerPrefs.SetInt("zycia", lives);
             }
         }
     }
     
     public void PlayerPosSave()
-    {   PlayerPrefs.SetFloat("wynik",score);
+    {   PlayerPrefs.SetInt("œmierci", deathcount);
+        PlayerPrefs.SetFloat("wynik",score);
         PlayerPrefs.SetInt("monety", coins);
         PlayerPrefs.SetInt("zycia",lives);
         PlayerPrefs.SetFloat("p_x",player.transform.position.x);
@@ -158,6 +160,28 @@ playerPosData.PlayerPosLoad();
         
                 anyGround = true;
             }
+              if (hit.collider != null && hit.collider.gameObject.CompareTag("dziura") && Vector2.Distance(transform.position, hit.point) < groundCheckDistance)
+            {
+        
+                 rb.velocity = Vector2.zero;
+            coins = 0;
+            score = score - 10;
+            deathcount++;
+            PlayerPrefs.SetInt("œmierci", deathcount);
+            PlayerPrefs.SetFloat("p_x", -146);
+            PlayerPrefs.SetFloat("p_y", 100);
+            PlayerPrefs.SetFloat("wynik", score);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+            }
+ if (hit.collider != null && hit.collider.gameObject.CompareTag("coin") && Vector2.Distance(transform.position, hit.point) < groundCheckDistance)
+            {
+            Destroy(hit.transform.gameObject);
+            score = score + 10;
+            coins ++;
+            PlayerPrefs.SetFloat("wynik",score);
+           
+            }
         }
         if (!anyGround)
         {
@@ -188,9 +212,11 @@ private void OnTriggerEnter2D(Collider2D collision)
             kontroler.SetBool("isDamaged", true);
             isDamaged = true;
             lives--;
+            PlayerPrefs.SetInt("zycia", lives);
             Invoke ("invunurable", 0);
             Invoke("nodamage", 1);
                 score = score- 5;
+            PlayerPrefs.SetFloat("wynik", score);
 
         }
         if (collision.tag == "lawa")
@@ -200,31 +226,18 @@ private void OnTriggerEnter2D(Collider2D collision)
             kontroler.SetBool("isDamaged", true);
             isDamaged = true;
             lives--;
+            PlayerPrefs.SetInt("zycia", lives);
             Invoke ("invunurable", 0);
             rb.velocity = Vector2.zero;
             rb.AddForce(Vector2.up * burnForce);
             Invoke("nodamage", 1);
-                score = score - 5;
-        }
-        }
-        if (collision.tag == "dziura")
-     {
-            coins = 0;
-            score = score - 10;
-            deathcount++;
-            PlayerPrefs.SetInt("œmierci", deathcount);
-            PlayerPrefs.SetFloat("p_x", -146);
-            PlayerPrefs.SetFloat("p_y", 100);
+            score = score - 5;
             PlayerPrefs.SetFloat("wynik", score);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
         }
-        if (collision.tag == "coin")
-        {
-            score = score + 10;
-            coins ++;
-            Destroy(collision.gameObject);
         }
+       
+   
+       
     }
     public void SetParent(Transform newParent)
     {
