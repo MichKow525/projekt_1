@@ -26,19 +26,22 @@ public class menucontroler : MonoBehaviour
      }
 
     public void LoadGame()
-    {   
-    
-        
-        if (PlayerPrefs.GetFloat("scena1", 1) == 1)
-        {
-        SceneManager.LoadScene(1);
-        }
-        if (PlayerPrefs.GetFloat("scena1", 1) == 2)
-        {
-        SceneManager.LoadScene(2);
-        }
+    {
 
+        if (PlayerPrefs.GetInt("Saved") == 1 && PlayerPrefs.GetInt("TimeToLoad") == 1)
+        {
+            if (PlayerPrefs.GetFloat("scena1", 1) == 1)
+            {
+                SceneManager.LoadScene(1);
+            }
+            if (PlayerPrefs.GetFloat("scena1", 1) == 2)
+            {
+                SceneManager.LoadScene(2);
+            }
 
+        }
+        else 
+            Debug.Log("brak zapisu");
         }
     public void Exit()
     {

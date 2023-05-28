@@ -9,7 +9,10 @@ using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
 public class movement : MonoBehaviour
-{   
+{   public int deathcount;
+    public killcheck script;
+    public float score = 0;
+    public int coins = 0;
     public int NIeœmiertelny;
     public Rigidbody2D rb;
     public int burnForce = 400;
@@ -34,13 +37,17 @@ playerPosData.PlayerPosLoad();
    }
    // zapisywanie********************
    void Start()
-    {  
+    {
+        deathcount = PlayerPrefs.GetInt("œmierci",0);
+        score = PlayerPrefs.GetFloat("wynik",0);
+        lives = PlayerPrefs.GetInt("zycia",3);
+       
         if(PlayerPrefs.GetInt("Saved") == 1 && PlayerPrefs.GetInt("TimeToLoad") == 1)
     {
     
         float pX= player.transform.position.x;
         float pY= player.transform.position.y;
-
+        score = PlayerPrefs.GetFloat("wynik");
         pX= PlayerPrefs.GetFloat("p_x");
         pY= PlayerPrefs.GetFloat("p_y");
         player.transform.position = new Vector2 (pX, pY);
@@ -58,10 +65,23 @@ playerPosData.PlayerPosLoad();
         PlayerPrefs.SetInt("TimeToLoad", 1);
         PlayerPrefs.Save();
     }
-    
+
+    public void LivesForCoins()
+    {
+        if (lives < 4)
+        {
+
+            if (coins >= 3)
+            {
+                lives++;
+                coins = 0;
+            }
+        }
+    }
     
     public void PlayerPosSave()
-    {
+    {   PlayerPrefs.SetFloat("wynik",score);
+        PlayerPrefs.SetInt("monety", coins);
         PlayerPrefs.SetInt("zycia",lives);
         PlayerPrefs.SetFloat("p_x",player.transform.position.x);
         PlayerPrefs.SetFloat("p_y",player.transform.position.y);
@@ -76,8 +96,11 @@ playerPosData.PlayerPosLoad();
     {   DoubleJump();
         Skok();
         animacje();
-        
-      
+        if (script.killreward != 0)
+        {
+            score = score + 10;
+        }
+       
     }
 
   
@@ -86,26 +109,10 @@ playerPosData.PlayerPosLoad();
 
     void FixedUpdate()
     {
+        GroundCheck();
+        LivesForCoins();
         Ruch();
-        RaycastHit2D[] res = new RaycastHit2D[10];
-        ContactFilter2D filter = new ContactFilter2D();
-        filter.NoFilter();
-        Physics2D.Raycast(transform.position, Vector2.down * groundCheckDistance, filter, res);
-        bool anyGround = false;
-        foreach (RaycastHit2D hit in res)
-        {
-
-            if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground") && Vector2.Distance(transform.position, hit.point) < groundCheckDistance)
-            {
-                Debug.Log(hit.collider + " " + hit.point);
-                Debug.DrawLine(transform.position, hit.point, Color.blue);
-                anyGround = true;
-            }
-        }
-        if (!anyGround)
-        {
-            isGrounded = false;
-        }
+       
     }
    
     private void OnCollisionEnter2D(Collision2D other)
@@ -136,8 +143,28 @@ playerPosData.PlayerPosLoad();
              doubleJump = false;
          }
  }
+    public void GroundCheck()
+    {
+        RaycastHit2D[] res = new RaycastHit2D[10];
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.NoFilter();
+        Physics2D.Raycast(transform.position, Vector2.down * groundCheckDistance, filter, res);
+        bool anyGround = false;
+        foreach (RaycastHit2D hit in res)
+        {
 
-  private void Ruch()
+            if (hit.collider != null && hit.collider.gameObject.CompareTag("Ground") && Vector2.Distance(transform.position, hit.point) < groundCheckDistance)
+            {
+        
+                anyGround = true;
+            }
+        }
+        if (!anyGround)
+        {
+            isGrounded = false;
+        }
+    }
+    private void Ruch()
   {
   
         if (Input.GetKey(KeyCode.LeftShift))
@@ -163,6 +190,7 @@ private void OnTriggerEnter2D(Collider2D collision)
             lives--;
             Invoke ("invunurable", 0);
             Invoke("nodamage", 1);
+                score = score- 5;
 
         }
         if (collision.tag == "lawa")
@@ -176,14 +204,27 @@ private void OnTriggerEnter2D(Collider2D collision)
             rb.velocity = Vector2.zero;
             rb.AddForce(Vector2.up * burnForce);
             Invoke("nodamage", 1);
-
+                score = score - 5;
         }
         }
         if (collision.tag == "dziura")
      {
+            coins = 0;
+            score = score - 10;
+            deathcount++;
+            PlayerPrefs.SetInt("œmierci", deathcount);
+            PlayerPrefs.SetFloat("p_x", -146);
+            PlayerPrefs.SetFloat("p_y", 100);
+            PlayerPrefs.SetFloat("wynik", score);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
         }
-       
+        if (collision.tag == "coin")
+        {
+            score = score + 10;
+            coins ++;
+            Destroy(collision.gameObject);
+        }
     }
     public void SetParent(Transform newParent)
     {
@@ -264,7 +305,14 @@ private void OnTriggerEnter2D(Collider2D collision)
     }
 
     public void death()
-    {   
+    {
+        deathcount++;
+        PlayerPrefs.SetInt("œmierci", deathcount);
+        PlayerPrefs.SetFloat("p_x",-146);
+        PlayerPrefs.SetFloat("p_y",100);
+        score = score - 10;
+        PlayerPrefs.SetFloat("wynik", score);
+        coins = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

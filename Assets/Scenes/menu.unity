@@ -241,6 +241,7 @@ MonoBehaviour:
   script: {fileID: 0}
   textPlayerName: {fileID: 0}
   textLives: {fileID: 0}
+  ktory_lvl: 0
 --- !u!1 &362987375
 GameObject:
   m_ObjectHideFlags: 0
