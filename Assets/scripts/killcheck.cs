@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class killcheck : MonoBehaviour
-{   
+{
+    public AudioSource killEffect;
     private int hitpoints;
     public float bounce;
     public Rigidbody2D rb2D;
@@ -22,6 +23,7 @@ public class killcheck : MonoBehaviour
     { 
          if (collision.gameObject.tag == "Weak_Point")
          {
+            killEffect.Play();
             killreward = killreward + 10;
             PlayerPrefs.SetFloat("killpoint", killreward);
              Destroy(collision.gameObject);

@@ -29,8 +29,12 @@ public class movement : MonoBehaviour
     public ParticleSystem krew;
     public GameObject player;
     movement playerPosData;
+    public AudioSource jumpEffect;
+    public AudioSource doubleJumpEffect;
+    public AudioSource deathEffect;
+    public AudioSource coinEffect;
 
-   private void Awake()
+    private void Awake()
    {
 playerPosData= FindObjectOfType<movement>();
 playerPosData.PlayerPosLoad();
@@ -129,7 +133,7 @@ playerPosData.PlayerPosLoad();
  {
      if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
  {
-            
+            jumpEffect.Play();
             rb.AddForce(Vector2.up * upForce);
             isGrounded = false;
             doubleJump = true;
@@ -140,7 +144,8 @@ playerPosData.PlayerPosLoad();
     {
          if (Input.GetKeyDown(KeyCode.Space) && doubleJump)
          {
-             rb.AddForce(Vector2.up * upForce);
+            doubleJumpEffect.Play();
+            rb.AddForce(Vector2.up * upForce);
             
              doubleJump = false;
          }
@@ -164,7 +169,8 @@ playerPosData.PlayerPosLoad();
             {
         
                  rb.velocity = Vector2.zero;
-            coins = 0;
+              
+           coins = 0;
             score = score - 10;
             deathcount++;
             PlayerPrefs.SetInt("œmierci", deathcount);
@@ -178,7 +184,8 @@ playerPosData.PlayerPosLoad();
  if (hit.collider != null && hit.collider.gameObject.CompareTag("coin") && Vector2.Distance(transform.position, hit.point) < groundCheckDistance)
             {
             Destroy(hit.transform.gameObject);
-            score = score + 10;
+                coinEffect.Play();
+           score = score + 10;
             coins ++;
             PlayerPrefs.SetFloat("wynik",score);
            
@@ -208,8 +215,8 @@ private void OnTriggerEnter2D(Collider2D collision)
         {
         if (collision.tag == "obra¿enia")
         {
-           
-            krew.Play();
+                deathEffect.Play();
+                krew.Play();
             kontroler.SetBool("isDamaged", true);
             isDamaged = true;
             lives--;
@@ -222,7 +229,7 @@ private void OnTriggerEnter2D(Collider2D collision)
         }
             if (collision.tag == "meele")
             {
-
+                deathEffect.Play();
                 krew.Play();
                 kontroler.SetBool("isDamaged", true);
                 isDamaged = true;
@@ -240,7 +247,7 @@ private void OnTriggerEnter2D(Collider2D collision)
         }
         if (collision.tag == "lawa")
         {
-
+            deathEffect.Play();
             krew.Play();
             kontroler.SetBool("isDamaged", true);
             isDamaged = true;
@@ -336,6 +343,7 @@ private void OnTriggerEnter2D(Collider2D collision)
 
     public void death()
     {
+      
         deathcount++;
         PlayerPrefs.SetInt("œmierci", deathcount);
         PlayerPrefs.SetFloat("p_x",-146);

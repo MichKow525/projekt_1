@@ -8,6 +8,7 @@ public class NewBehaviourScript : MonoBehaviour
     public Transform bulletPos;
     private float timer;
     public GameObject player;
+    public AudioSource strzal;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +36,7 @@ public class NewBehaviourScript : MonoBehaviour
     }
     void shoot()
     {
+        strzal.Play();
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
     }
 }
