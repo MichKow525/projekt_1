@@ -21,9 +21,14 @@ public class menucontroler : MonoBehaviour
         PlayerPrefs.DeleteAll();
         playerName = input.text;
         PlayerPrefs.SetString("name", playerName);
-        SceneManager.LoadScene(1);
 
      }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+    
 
     public void LoadGame()
     {

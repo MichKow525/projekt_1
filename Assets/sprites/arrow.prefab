@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4771734110084581061}
   m_Layer: 0
   m_Name: arrow
-  m_TagString: lawa
+  m_TagString: meele
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

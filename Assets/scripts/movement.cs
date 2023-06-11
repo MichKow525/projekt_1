@@ -171,7 +171,8 @@ playerPosData.PlayerPosLoad();
             PlayerPrefs.SetFloat("p_x", -146);
             PlayerPrefs.SetFloat("p_y", 100);
             PlayerPrefs.SetFloat("wynik", score);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                PlayerPrefs.SetInt("zycia", 3);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
             }
  if (hit.collider != null && hit.collider.gameObject.CompareTag("coin") && Vector2.Distance(transform.position, hit.point) < groundCheckDistance)
@@ -219,25 +220,41 @@ private void OnTriggerEnter2D(Collider2D collision)
             PlayerPrefs.SetFloat("wynik", score);
 
         }
+            if (collision.tag == "meele")
+            {
+
+                krew.Play();
+                kontroler.SetBool("isDamaged", true);
+                isDamaged = true;
+                lives--;
+                PlayerPrefs.SetInt("zycia", lives);
+                Invoke("invunurable", 0);
+                Invoke("nodamage", 1);
+                score = score - 5;
+                PlayerPrefs.SetFloat("wynik", score);
+                rb.velocity = Vector2.zero;
+                rb.AddForce(Vector2.up * burnForce);
+
+            }
+            
+        }
         if (collision.tag == "lawa")
         {
-           
+
             krew.Play();
             kontroler.SetBool("isDamaged", true);
             isDamaged = true;
             lives--;
             PlayerPrefs.SetInt("zycia", lives);
-            Invoke ("invunurable", 0);
+            Invoke("invunurable", 0);
             rb.velocity = Vector2.zero;
             rb.AddForce(Vector2.up * burnForce);
             Invoke("nodamage", 1);
             score = score - 5;
             PlayerPrefs.SetFloat("wynik", score);
         }
-        }
-       
-   
-       
+
+
     }
     public void SetParent(Transform newParent)
     {
@@ -325,6 +342,7 @@ private void OnTriggerEnter2D(Collider2D collision)
         PlayerPrefs.SetFloat("p_y",100);
         score = score - 10;
         PlayerPrefs.SetFloat("wynik", score);
+        PlayerPrefs.SetInt("zycia", 3);
         coins = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
