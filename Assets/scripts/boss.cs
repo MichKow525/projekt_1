@@ -10,7 +10,7 @@ public class boss : MonoBehaviour
     [SerializeField] private Transform[] waypoints;
     [SerializeField] private float speed;
     [SerializeField] private float checkDistance = 0.05f;
-    private int NIeœmiertelny;
+    private int NIesmiertelny;
 
     private Transform targetWaypoint;
     private int currentWaypointIndex = 0;
@@ -41,7 +41,7 @@ public class boss : MonoBehaviour
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (NIeœmiertelny == 0)
+        if (NIesmiertelny == 0)
         {
             if (collision.gameObject.tag == "Player")
             {
@@ -52,13 +52,13 @@ public class boss : MonoBehaviour
     }
     public void invunurable()
     {
-        NIeœmiertelny = 1;
+        NIesmiertelny = 1;
         Invoke("koniecinvunurable", 1);
     }
 
     public void koniecinvunurable()
     {
-        NIeœmiertelny = 0;
+        NIesmiertelny = 0;
     }
     private Transform GetNextWaypoint()
     {

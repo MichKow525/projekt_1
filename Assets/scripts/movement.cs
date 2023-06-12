@@ -13,7 +13,7 @@ public class movement : MonoBehaviour
     public killcheck script;
     public float score = 0;
     public int coins = 0;
-    public int NIeœmiertelny;
+    public int NIesmiertelny;
     public Rigidbody2D rb;
     public int burnForce = 400;
     public int upForce = 200;
@@ -42,7 +42,7 @@ playerPosData.PlayerPosLoad();
    // zapisywanie********************
    void Start()
     {
-        deathcount = PlayerPrefs.GetInt("œmierci",0);
+        deathcount = PlayerPrefs.GetInt("smierci",0);
         score = PlayerPrefs.GetFloat("wynik",0);
         lives = PlayerPrefs.GetInt("zycia",3);
        
@@ -85,7 +85,7 @@ playerPosData.PlayerPosLoad();
     }
     
     public void PlayerPosSave()
-    {   PlayerPrefs.SetInt("œmierci", deathcount);
+    {   PlayerPrefs.SetInt("smierci", deathcount);
         PlayerPrefs.SetFloat("wynik",score);
         PlayerPrefs.SetInt("monety", coins);
         PlayerPrefs.SetInt("zycia",lives);
@@ -211,9 +211,9 @@ playerPosData.PlayerPosLoad();
     }
 private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (NIeœmiertelny == 0)
+        if (NIesmiertelny == 0)
         {
-        if (collision.tag == "obra¿enia")
+        if (collision.tag == "obrazenia")
         {
                 deathEffect.Play();
                 krew.Play();
@@ -332,20 +332,20 @@ private void OnTriggerEnter2D(Collider2D collision)
 
     public void invunurable()
     {
-        NIeœmiertelny = 1;
+        NIesmiertelny = 1;
         Invoke("koniecinvunurable",1);
     }
 
     public void koniecinvunurable()
     {
-       NIeœmiertelny = 0;
+       NIesmiertelny = 0;
     }
 
     public void death()
     {
       
         deathcount++;
-        PlayerPrefs.SetInt("œmierci", deathcount);
+        PlayerPrefs.SetInt("smierci", deathcount);
         PlayerPrefs.SetFloat("p_x",-146);
         PlayerPrefs.SetFloat("p_y",100);
         score = score - 10;

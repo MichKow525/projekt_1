@@ -17,12 +17,12 @@ public class znikanie : MonoBehaviour
         
     }
 
-    private void wy³¹czenie()
+    private void wylaczenie()
     {
        gameObject.SetActive(false);
     }
 
-    private void w³¹czenie()
+    private void wlaczenie()
     {
         gameObject.SetActive(true);
     }
@@ -31,8 +31,8 @@ public class znikanie : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-          Invoke("wy³¹czenie", time);
-          Invoke("w³¹czenie", 6);
+          Invoke("wylaczenie", time);
+          Invoke("wlaczenie", 6);
         }
     }
 }

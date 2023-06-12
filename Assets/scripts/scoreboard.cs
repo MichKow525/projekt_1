@@ -21,7 +21,7 @@ public class scoreboard : MonoBehaviour
     {
         textPlayerName.text = "Gratulacje " + PlayerPrefs.GetString("name", "test");
         textScore.text = "Twój wynik to : " + PlayerPrefs.GetFloat("finalScore",0);
-        textDeaths.text = "œmierci: " + PlayerPrefs.GetInt("œmierci", 0) ;
+        textDeaths.text = "smierci: " + PlayerPrefs.GetInt("smierci", 0) ;
     }
 
     public void Return()

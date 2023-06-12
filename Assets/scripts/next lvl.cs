@@ -21,8 +21,8 @@ public class nextlvl : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-     {  float p_x = -150;
-        float p_y = 117;
+     {  float p_x = -477;
+        float p_y = 114;
         PlayerPrefs.GetInt("zycia");
         PlayerPrefs.SetFloat("p_x", p_x);
         PlayerPrefs.SetFloat("p_y", p_y);
