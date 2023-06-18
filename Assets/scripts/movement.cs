@@ -75,12 +75,17 @@ playerPosData.PlayerPosLoad();
         if (lives < 4)
         {
 
-            if (coins >= 3)
+            if (coins == 3)
             {
                 lives++;
                 coins = 0;
                 PlayerPrefs.SetInt("zycia", lives);
             }
+
+             if (coins > 3)
+             {
+                 coins = 1;
+             }
         }
     }
     

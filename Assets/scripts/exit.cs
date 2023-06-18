@@ -29,7 +29,7 @@ public class exit : MonoBehaviour
     }
 
     public void quit()
-    {   
+    {    PlayerPrefs.SetInt("TimeToLoad", 1);
         Time.timeScale = 1f;
          PlayerPrefs.Save();
         playerPosData.PlayerPosSave();
